@@ -7,46 +7,37 @@ import static io.restassured.http.ContentType.JSON;
 import static library.helpers.CustomApiListener.withCustomTemplates;
 
 public class RequestSpec {
-    public static RequestSpecification createBooksRequestSpec = with()
+    public static RequestSpecification baseSpec = with()
+            // В нее перенести filter, contentType и baseUrl.
             .filter(withCustomTemplates())
             .baseUri("http://localhost:8080")
-            .basePath("/create_books")
-            .log().all()
             .contentType(JSON);
+
+    public static RequestSpecification createBooksRequestSpec = with()
+            .basePath("/create_books")
+            .log().all();
+
 
     public static RequestSpecification getAllBooksRequestSpec = with()
-            .filter(withCustomTemplates())
-            .baseUri("http://localhost:8080")
             .basePath("/books")
-            .log().all()
-            .contentType(JSON);
+            .log().all();
 
     public static RequestSpecification getBookByIdRequestSpec = with()
-            .filter(withCustomTemplates())
-            .baseUri("http://localhost:8080")
             .basePath("/books/1")
-            .log().all()
-            .contentType(JSON);
+            .log().all();
+
 
     public static RequestSpecification updateBookRequestSpec = with()
-            .filter(withCustomTemplates())
-            .baseUri("http://localhost:8080")
-            .basePath("/books/1")
-            .log().all()
-            .contentType(JSON);
+            .basePath("/books/2")
+            .log().all();
 
     public static RequestSpecification deleteBookRequestSpec = with()
-            .filter(withCustomTemplates())
-            .baseUri("http://localhost:8080")
             .basePath("/books/1")
-            .log().all()
-            .contentType(JSON);
+            .log().all();
 
     public static RequestSpecification deleteBookTwiceRequestSpec = with()
-            .filter(withCustomTemplates())
-            .baseUri("http://localhost:8080")
             .basePath("/books/1")
-            .log().all()
-            .contentType(JSON);
+            .log().all();
+
 
 }

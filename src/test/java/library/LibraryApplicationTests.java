@@ -32,6 +32,7 @@ public class LibraryApplicationTests {
         body.setYear(year);
         body.setPages(pages);
              given()
+            .spec(baseSpec)
             .spec(createBooksRequestSpec)
             .body(body)
             .when()
@@ -44,6 +45,7 @@ public class LibraryApplicationTests {
     @Test
     void getAllBooks() {
         given()
+                .spec(baseSpec)
                 .spec(getAllBooksRequestSpec)
                 .when()
                 .get()
@@ -61,6 +63,7 @@ public class LibraryApplicationTests {
     void getBookById(){
         LibraryModel response =
         given()
+                .spec(baseSpec)
                 .spec(getBookByIdRequestSpec)
                 .when()
                 .get()
@@ -82,6 +85,7 @@ public class LibraryApplicationTests {
         int newPages = 200;
         LibraryModel response =
                 given()
+                        .spec(baseSpec)
                         .spec(updateBookRequestSpec)
                         .body(body.setAuthor(newAuthor))
                         .body(body.setTitle(newTitle))
@@ -102,6 +106,7 @@ public class LibraryApplicationTests {
     @Test
     void deleteBook(){
                 given()
+                        .spec(baseSpec)
                         .spec(deleteBookRequestSpec)
                         .when()
                         .delete()
@@ -115,6 +120,7 @@ public class LibraryApplicationTests {
     @Test
     void deleteSameBookTwice(){
         given()
+                .spec(baseSpec)
                 .spec(deleteBookTwiceRequestSpec)
                 .when()
                 .delete()
